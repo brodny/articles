@@ -1,4 +1,5 @@
 using FleetManagement;
+using FleetManagement.Configuration;
 using NUnit.Framework;
 
 namespace ConfigProvider.Tests
@@ -30,6 +31,30 @@ namespace ConfigProvider.Tests
         public void CanReadSpeedLimitsSection()
         {
             Assert.NotNull(_providerUnderTest.TrafficCode.SpeedLimits);
+        }
+
+        [Test]
+        public void ShouldReadSpeedLimitsForPoland()
+        {
+            SpeedLimitElement speedLimitInPoland = _providerUnderTest.TrafficCode.SpeedLimits["Poland"];
+
+            Assert.NotNull(speedLimitInPoland);
+
+            Assert.AreEqual("Poland", speedLimitInPoland.CountryName);
+            Assert.AreEqual(90, speedLimitInPoland.Limit);
+            Assert.AreEqual(SpeedUnit.Kmh, speedLimitInPoland.Unit);
+        }
+
+        [Test]
+        public void ShouldReadSpeedLimitsForUnitedKingdom()
+        {
+            SpeedLimitElement speedLimitInPoland = _providerUnderTest.TrafficCode.SpeedLimits["UK"];
+
+            Assert.NotNull(speedLimitInPoland);
+
+            Assert.AreEqual("UK", speedLimitInPoland.CountryName);
+            Assert.AreEqual(60, speedLimitInPoland.Limit);
+            Assert.AreEqual(SpeedUnit.Mph, speedLimitInPoland.Unit);
         }
     }
 }
