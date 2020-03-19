@@ -15,5 +15,11 @@
   <ItemGroup>
     <ProjectReference Include="..\FleetManagement\FleetManagement.csproj" />
   </ItemGroup>
+  
+  <!-- START: This is a buildtime work around for https://github.com/dotnet/corefx/issues/22101 -->
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="App.config" DestinationFiles="$(OutDir)\testhost.dll.config" />
+  </Target>
+  <!-- END: This is a buildtime work around for https://github.com/dotnet/corefx/issues/22101 -->
 
 </Project>
