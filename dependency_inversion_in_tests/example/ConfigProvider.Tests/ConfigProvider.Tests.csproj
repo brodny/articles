@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConfigProvider\ConfigProvider.csproj" />
+    <ProjectReference Include="..\FleetManagement\FleetManagement.csproj" />
   </ItemGroup>
 
 </Project>

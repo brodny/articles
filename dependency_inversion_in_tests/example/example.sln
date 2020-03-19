@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigProvider", "ConfigProvider\ConfigProvider.csproj", "{EA2486E8-A7CE-4D6F-A0B7-4739E055C217}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagement", "FleetManagement\FleetManagement.csproj", "{EA2486E8-A7CE-4D6F-A0B7-4739E055C217}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigProvider.Tests", "ConfigProvider.Tests\ConfigProvider.Tests.csproj", "{AA3832BE-36BD-4C96-A8E1-28B14BCF6449}"
 EndProject
