@@ -3,7 +3,7 @@ using FleetManagement.Configuration;
 
 namespace FleetManagement
 {
-    public class ConfigurationProvider
+    public class ConfigurationProvider : IConfigurationProvider
     {
         public TrafficCode TrafficCode
         {
