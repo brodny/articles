@@ -25,5 +25,11 @@ namespace ConfigProvider.Tests
         {
             Assert.NotNull(_providerUnderTest.TrafficCode);
         }
+
+        [Test]
+        public void CanReadSpeedLimitsSection()
+        {
+            Assert.NotNull(_providerUnderTest.TrafficCode.SpeedLimits);
+        }
     }
 }
