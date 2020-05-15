@@ -1,4 +1,4 @@
-namespace FleetManagement.Configuration
+namespace FleetManagement
 {
     public enum SpeedUnit
     {

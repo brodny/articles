@@ -126,3 +126,7 @@ public enum SpeedUnit
     Mph,
 }
 ```
+
+## And we have to evolve
+
+Let's just say you are about to implement an enhancement to the system. You have to write a class that calculates the traffic ticket that the driver would get for driving at certain speed. You plan to go with TDD, so you start with tests.
