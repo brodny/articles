@@ -130,3 +130,6 @@ public enum SpeedUnit
 ## And we have to evolve
 
 Let's just say you are about to implement an enhancement to the system. You have to write a class that calculates the traffic ticket that the driver would get for driving at certain speed. You plan to go with TDD, so you start with tests.
+
+You create a new TicketCalculator class and a test class for it. The calculator would need a configuration provider for sure. It would be much more useful to provide a mock instead of a real provider. That would allow to both avoid providing an app.config file with specific values and create specific conditions for the tests (e.g. to check the boundary conditions).
+Unfortunately, current implementation does not allow for that. You would have to provide a real instance of a TrafficCode class and it doesn't allow to set SpeedLimits value. We would have to somehow change the values in app.config file while the tests run or somehow change it for a base class. Both of them seem crappy to be honest.
