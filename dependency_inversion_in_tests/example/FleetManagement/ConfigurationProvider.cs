@@ -5,7 +5,7 @@ namespace FleetManagement
 {
     public class ConfigurationProvider : IConfigurationProvider
     {
-        public TrafficCode TrafficCode
+        public ITrafficCode TrafficCode
         {
             get
             {

@@ -12,12 +12,12 @@ namespace ConfigProvider.Tests
 
         private IConfigurationProvider _configurationProviderMock;
 
-        private TrafficCode _trafficCodeMock;
+        private ITrafficCode _trafficCodeMock;
 
         [SetUp]
         public void Setup()
         {
-            _trafficCodeMock = new TrafficCode();
+            _trafficCodeMock = Substitute.For<ITrafficCode>();
 
             _configurationProviderMock = Substitute.For<IConfigurationProvider>();
             _configurationProviderMock.TrafficCode.Returns(_trafficCodeMock);

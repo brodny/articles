@@ -4,6 +4,6 @@ namespace FleetManagement
 {
     public interface IConfigurationProvider
     {
-        TrafficCode TrafficCode { get; }
+        ITrafficCode TrafficCode { get; }
     }
 }
