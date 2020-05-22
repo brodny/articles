@@ -133,3 +133,8 @@ Let's just say you are about to implement an enhancement to the system. You have
 
 You create a new TicketCalculator class and a test class for it. The calculator would need a configuration provider for sure. It would be much more useful to provide a mock instead of a real provider. That would allow to both avoid providing an app.config file with specific values and create specific conditions for the tests (e.g. to check the boundary conditions).
 Unfortunately, current implementation does not allow for that. You would have to provide a real instance of a TrafficCode class and it doesn't allow to set SpeedLimits value. We would have to somehow change the values in app.config file while the tests run or somehow change it for a base class. Both of them seem crappy to be honest.
+
+## Dependency inversion
+
+What is dependency inversion? It's the last (but definitely not least) of the SOLID principles. It's the rule that says that abstractions should not depend on implementation. It should be the other way around - the implementation should depend on abstractions.
+Why is it important in our case? We have a configuration provider hidden by an abstraction (interface) that depends on conrete class - TrafficCode. We are going to fix that violation and loose coupling by introducing an abstraction for TrafficCode. This way we will be able to provide a valid mock for that.
