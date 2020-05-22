@@ -2,7 +2,8 @@ using System.Configuration;
 
 namespace FleetManagement.Configuration
 {
-    public class SpeedLimitElement : ConfigurationElement
+
+    public class SpeedLimitElement : ConfigurationElement, ISpeedLimitElement
     {
         private const string NamePropertyName = "name";
         private const string LimitPropertyName = "limit";

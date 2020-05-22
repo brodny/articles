@@ -36,7 +36,7 @@ namespace ConfigProvider.Tests
         [Test]
         public void ShouldReadSpeedLimitsForPoland()
         {
-            SpeedLimitElement speedLimitInPoland = _providerUnderTest.TrafficCode.SpeedLimits["Poland"];
+            ISpeedLimitElement speedLimitInPoland = _providerUnderTest.TrafficCode.SpeedLimits["Poland"];
 
             Assert.NotNull(speedLimitInPoland);
 
@@ -48,7 +48,7 @@ namespace ConfigProvider.Tests
         [Test]
         public void ShouldReadSpeedLimitsForUnitedKingdom()
         {
-            SpeedLimitElement speedLimitInPoland = _providerUnderTest.TrafficCode.SpeedLimits["UK"];
+            ISpeedLimitElement speedLimitInPoland = _providerUnderTest.TrafficCode.SpeedLimits["UK"];
 
             Assert.NotNull(speedLimitInPoland);
 

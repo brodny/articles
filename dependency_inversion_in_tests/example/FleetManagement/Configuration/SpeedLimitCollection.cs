@@ -9,7 +9,7 @@ namespace FleetManagement.Configuration
     {
         private const string PropertyName = "country";
 
-        public new SpeedLimitElement this[string countryName]
+        public new ISpeedLimitElement this[string countryName]
         {
             get { return (SpeedLimitElement)BaseGet(countryName); }
         }
