@@ -3,8 +3,9 @@ using System.Configuration;
 
 namespace FleetManagement.Configuration
 {
+
     [ConfigurationCollection(typeof(SpeedLimitElement), AddItemName = "country")]
-    public class SpeedLimitCollection : ConfigurationElementCollection
+    public class SpeedLimitCollection : ConfigurationElementCollection, ISpeedLimitCollection
     {
         private const string PropertyName = "country";
 
