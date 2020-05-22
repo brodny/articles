@@ -2,7 +2,7 @@ using System.Configuration;
 
 namespace FleetManagement.Configuration
 {
-    public class TrafficCode : ConfigurationSection
+    public class TrafficCode : ConfigurationSection, ITrafficCode
     {
         private const string SpeedLimitsPropertyName = "speedLimits";
 

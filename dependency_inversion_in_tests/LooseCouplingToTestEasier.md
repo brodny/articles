@@ -138,3 +138,4 @@ Unfortunately, current implementation does not allow for that. You would have to
 
 What is dependency inversion? It's the last (but definitely not least) of the SOLID principles. It's the rule that says that abstractions should not depend on implementation. It should be the other way around - the implementation should depend on abstractions.
 Why is it important in our case? We have a configuration provider hidden by an abstraction (interface) that depends on conrete class - TrafficCode. We are going to fix that violation and loose coupling by introducing an abstraction for TrafficCode. This way we will be able to provide a valid mock for that.
+The first thing we would need to do is to add an empty ITrafficCode interface and make TrafficCode class to implement it.
