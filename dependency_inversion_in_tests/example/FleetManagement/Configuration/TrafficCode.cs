@@ -6,7 +6,7 @@ namespace FleetManagement.Configuration
     {
         private const string SpeedLimitsPropertyName = "speedLimits";
 
-        public ISpeedLimitCollection SpeedLimits
+        public ISpeedLimits SpeedLimits
         {
             get
             {

@@ -5,7 +5,7 @@ namespace FleetManagement.Configuration
 {
 
     [ConfigurationCollection(typeof(SpeedLimitElement), AddItemName = "country")]
-    public class SpeedLimitCollection : ConfigurationElementCollection, ISpeedLimitCollection
+    public class SpeedLimitCollection : ConfigurationElementCollection, ISpeedLimits
     {
         private const string PropertyName = "country";
 
