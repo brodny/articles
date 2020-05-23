@@ -1,6 +1,6 @@
 namespace FleetManagement.Configuration
 {
-    public interface ISpeedLimitElement
+    public interface ISpeedLimit
     {
         string CountryName { get; }
         int Limit { get; }
