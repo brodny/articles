@@ -14,15 +14,23 @@ namespace ConfigProvider.Tests
 
         private ITrafficCode _trafficCodeMock;
 
-        private SpeedLimitCollection _speedLimitCollectionMock;
+        private ISpeedLimits _speedLimitsMock;
+
+        private ISpeedLimit _polandSpeedLimitMock;
 
         [SetUp]
         public void Setup()
         {
-            _speedLimitCollectionMock = new SpeedLimitCollection();
+            _polandSpeedLimitMock = Substitute.For<ISpeedLimit>();
+            _polandSpeedLimitMock.CountryName.Returns("Poland");
+            _polandSpeedLimitMock.Limit.Returns(90);
+            _polandSpeedLimitMock.Unit.Returns(SpeedUnit.Kmh);
+
+            _speedLimitsMock = Substitute.For<ISpeedLimits>();
+            _speedLimitsMock["Poland"].Returns(_polandSpeedLimitMock);
             
             _trafficCodeMock = Substitute.For<ITrafficCode>();
-            _trafficCodeMock.SpeedLimits.Returns(_speedLimitCollectionMock);
+            _trafficCodeMock.SpeedLimits.Returns(_speedLimitsMock);
 
             _configurationProviderMock = Substitute.For<IConfigurationProvider>();
             _configurationProviderMock.TrafficCode.Returns(_trafficCodeMock);
