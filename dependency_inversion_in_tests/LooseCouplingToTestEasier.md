@@ -127,6 +127,10 @@ public enum SpeedUnit
 }
 ```
 
+The below diagram presents the current state of the system:
+
+![original-design](./original_system_design.png "Original system design")
+
 ## And we have to evolve
 
 Let's just say you are about to implement an enhancement to the system. You have to write a class that calculates the traffic ticket that the driver would get for driving at certain speed. You plan to go with TDD, so you start with tests.
@@ -145,3 +149,7 @@ Create an empty interface, use that interface in ITrafficCode, pull the required
 And once again we have to reply the steps for ISpeedLimits interface to get rid of dependency on concrete SpeedLimitElement class.
 
 Now we can create mocks freely and set up any conditions in tests. Respecting dependency inversion rule has helped to loose coupling and helped to provide an architecture that is easier to test. It also allows for more flexibility now as configuration does not need to be read from app.config file and for example downloaded from a web service instead only by providing a new implementation of the interfaces and such a change should be transparent to the clients.
+
+The below diagram presents the state of the system after the refactor:
+
+![original-design](./system_design_after_refactor.png "System design after refactor")
