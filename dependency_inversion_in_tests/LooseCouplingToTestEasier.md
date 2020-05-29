@@ -4,11 +4,13 @@ Tight coupling is a situation where a component has a lot of knowledge of other 
 
 A situation like that could really complicate creating unit tests. It could be really hard to create an instance of a tightly-coupled component in a test code. It might be necessary to create objects of several different classes that communicate with the database, read files or perform web requests in order to create a test class. Mocking concrete classes can be much more difficult or even impossible. It might require a lot of setup and boilerplate code and could be unreliable (e.g. because the web server is currently unavailable). Some corner-case or exceptional scenarios might be impossible to test.
 
-Such a situation is probably not very often seen while creating a new code, especially while using TDD approach. It is much more often in a legacy code. You are asked to fix some bug or provide extra functionality to some part of a system and you would like to test that. You see that the piece of system has not yet been tested, so you think about providing unit tests for the unchanged parts of the component as well... and then you hit the wall. The wall built of all these other classes and dependencies.
+Such a situation is probably not very often seen while creating a new code, especially while using TDD approach. It is much more common in a legacy code.
+
+Let's consider a situation when for some reason there is a need to introduce tests. That may be caused by a reported bug, a change request or just because of a need to cover the existing code with the tests. When a class to be tested is tightly coupled with other classes it could be a real nightmare to resolve the dependencies.
 
 ## Current state of the system
 
-Let's say you have a system that needs an information about speed limits in several countries. It is contained in configuration file.
+Our system needs an information about speed limits in several countries. It is contained in the configuration file.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -153,3 +155,7 @@ Now we can create mocks freely and set up any conditions in tests. Respecting de
 The below diagram presents the state of the system after the refactor:
 
 ![original-design](./system_design_after_refactor.png "System design after refactor")
+
+## Last final word
+
+On the code provided with the article on GitHub, please take a special look at FleetManagement.Tests.csproj. It needed a workaround for building process to ensure that app.config file gets copied into the build folder so it can be accessible when executing the tests. This is an additional dependency that was resolved in the process of refactoring - currently unit testing all the classes provided does not need a real .config file. It is sufficient to just configure the mocks.
