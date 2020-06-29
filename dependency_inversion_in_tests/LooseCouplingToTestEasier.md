@@ -133,7 +133,7 @@ The below diagram presents the current state of the system:
 
 ![original-design](./original_system_design.png "Original system design")
 
-## And we have to evolve
+## A need for change
 
 Let's imagine a request was made to implement changes in the system. It is required to create a traffic ticket calculator for a driver driving at certain speed. It would be a good idea to start with the tests.
 
@@ -144,14 +144,14 @@ Unfortunately, current implementation does not allow that. It is required to pro
 ## Dependency inversion
 
 What is dependency inversion? It's the last (but definitely not least) of the SOLID principles. It's the rule that says that abstractions should not depend on implementation. It should be the other way around - the implementation should depend on abstractions.
-Why is it important in our case? We have a configuration provider hidden by an abstraction (interface) that depends on concrete class - TrafficCode. We are going to fix that violation and loose coupling by introducing an abstraction for TrafficCode. This way we will be able to provide a valid mock for that.
-The first thing we would need to do is to add an empty ITrafficCode interface and make TrafficCode class to implement it.
-Now we can make our abstraction (IConfigurationProvider) to depend on other abstraction - the newly created ITrafficCode. However, this change breaks the existing code as it is not building anymore because of lack of SpeedLimits property in ITrafficCode. This breaks our tests. This is why we need to proceed with refactor and pull the member up to make it an interface member. Rebuild, run the tests - we're still OK. That was quite an easy refactor.
-We are now able to create a mock for TrafficCode. But what we've done is we just moved the original problem one step further. It is now ITrafficCode that depends on an implementation. We have to repeat the previous steps - for SpeedLimitCollection now.
-Create an empty interface, use that interface in ITrafficCode, pull the required members up. Rebuild, run tests. The tests fail, which is why we needed to change the implementation to still use the concrete class in a private property and return that property in a public property which is required by an interface implementation. Nevertheless, another coupling loosed a bit.
-And once again we have to reply the steps for ISpeedLimits interface to get rid of dependency on concrete SpeedLimitElement class.
+Why is it important in the previously described case? There is a configuration provider hidden by an abstraction (interface) that depends on a concrete class - TrafficCode. The idea is to fix that violation and loose coupling by introducing an abstraction for TrafficCode. This way it would be possible to provide a valid mock for that part.
+The first thing to do would be to add an empty ITrafficCode interface and make TrafficCode class to implement it.
+Now it is possible to make the abstraction (IConfigurationProvider) depend on the other abstraction - the newly created ITrafficCode. Now it would be a good idea to use a compiler support. This change breaks the existing code as it is not building anymore because of lack of SpeedLimits property in ITrafficCode. This is why the refactor should go on. The member should be pulled up to make it an interface member. The rebuild should now succeed and it would be possible to run the tests. That was quite an easy refactor.
+It is now possible to create a mock for TrafficCode. But all that work has just moved the original problem one step further. It is now ITrafficCode that depends on an implementation. The previous steps should be repeated - for SpeedLimitCollection now.
+Create an empty interface, use that interface in ITrafficCode, pull the required members up. Rebuild, run tests. The tests fail and to fix them it is required to use the concrete class as a property type instead of an interface. This can be fixed by creating a private property with a concrete configuration type wrapped by a public property which is required by an interface implementation. Nevertheless, another coupling loosed a bit.
+And once again the steps need to be replied for ISpeedLimits interface to get rid of dependency on concrete SpeedLimitElement class.
 
-Now we can create mocks freely and set up any conditions in tests. Respecting dependency inversion rule has helped to loose coupling and helped to provide an architecture that is easier to test. It also allows for more flexibility now as configuration does not need to be read from app.config file and for example downloaded from a web service instead only by providing a new implementation of the interfaces and such a change should be transparent to the clients.
+Now the mocks can be created freely and any conditions can be set up in tests effortlessly. Fixing the dependency inversion rule violations has helped to loose coupling and to provide an architecture that is easier to test. It also allows for more flexibility now as configuration does not need to be read from app.config file and may be e.g. downloaded from a web service by providing a new implementation of the interfaces only. Such a change should also be transparent to the clients using the configuration provider.
 
 The below diagram presents the state of the system after the refactor:
 
